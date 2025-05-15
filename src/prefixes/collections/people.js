@@ -10,11 +10,12 @@ const People = class {
 
   async find({
     fields,
-    context = this.#graphServer.context, // TODO: is this needed
+    context,
     filter,
     headers,
     operationName = "FindPeople",
   }) {
+    context = context || this.#graphServer.context;
     const query = `query ${operationName}($filter: people_find_input) {
       training {
         people_query {
@@ -32,6 +33,7 @@ const People = class {
 			headers,
 			clean: true, // nullToUndefined will run automatically
 			operationName,
+      token: context.token
 		});
   }
   async insert({
@@ -41,6 +43,7 @@ const People = class {
     headers,
     operationName = "InsertPeople",
   }) {
+    context = context || this.#graphServer.context;
     const query = `mutation ${operationName}($input: [people_insert_input!]!) {
       training {
         people_mutation {
@@ -54,10 +57,11 @@ const People = class {
 			query,
 			variables: { input },
 			url: this.#graphUrl,
-			key: 'training.people_mutation.people_insert',
+			key: "training.people_mutation.people_insert",
 			headers,
 			clean: true, // nullToUndefined will run automatically
 			operationName,
+			token: context.token,
 		});
   }
   async remove({
@@ -67,6 +71,7 @@ const People = class {
     headers,
     operationName = "RemovePeople",
   }) {
+    context = context || this.#graphServer.context;
     const query = `mutation ${operationName}($filter: people_remove_input) {
       training {
         people_mutation {
@@ -80,10 +85,11 @@ const People = class {
 			query,
 			variables: { filter },
 			url: this.#graphUrl,
-			key: 'training.people_mutation.people_remove',
+			key: "training.people_mutation.people_remove",
 			headers,
 			clean: true, // nullToUndefined will run automatically
 			operationName,
+			token: context.token,
 		});
   }
 };

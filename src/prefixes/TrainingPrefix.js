@@ -10,7 +10,7 @@ const TrainingPrefix = class {
     this.#graphUrl = graphUrl;
 
     this.movies = new Movies({ graphServer: this.#graphServer, graphUrl: this.#graphUrl });
-    this.people = new People({ graphServer: this.#graphServer, graphUrl: this.#graphUrl })
+    this.people = new People({ graphServer: this.#graphServer, graphUrl: this.#graphUrl });
   }
 }
 

@@ -15,6 +15,7 @@ const Movies = class {
     headers,
     operationName = "FindMovie",
   }) {
+    context = context || this.#graphServer.context;
     const query = `query ${operationName}($filter: movies_find_input) {
       training {
         movies_query {
@@ -32,6 +33,7 @@ const Movies = class {
       headers,
       clean: true, // nullToUndefined will run automatically
       operationName,
+      token: context.token
     });
   }
   async insert({
@@ -41,6 +43,7 @@ const Movies = class {
     headers,
     operationName = "InsertMovie",
   }) {
+    context = context || this.#graphServer.context;
     const query = `mutation ${operationName}($input: [movies_insert_input!]!) {
       training {
         movies_mutation {
@@ -58,6 +61,7 @@ const Movies = class {
 			headers,
 			clean: true, // nullToUndefined will run automatically
 			operationName,
+      token: context.token
 		});
   }
   async remove({
@@ -67,6 +71,7 @@ const Movies = class {
     headers,
     operationName = "RemoveMovie",
   }) {
+    context = context || this.#graphServer.context;
     const query = `mutation ${operationName}($filter: movies_remove_input) {
       training {
         movies_mutation {
@@ -84,6 +89,7 @@ const Movies = class {
 			headers,
 			clean: true, // nullToUndefined will run automatically
 			operationName,
+      token: context.token
 		});
   }
 };
