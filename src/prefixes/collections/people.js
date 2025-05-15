@@ -25,13 +25,14 @@ const People = class {
       }
     }`;
     return await svQuery({
-      query,
-      variables: { filter },
-      url: this.#graphUrl,
-      headers,
-      clean: true, // nullToUndefined will run automatically
-      operationName,
-    });
+			query,
+			variables: { filter },
+			url: this.#graphUrl,
+			key: training.people_query.people_find,
+			headers,
+			clean: true, // nullToUndefined will run automatically
+			operationName,
+		});
   }
   async insert({
     fields,
@@ -50,13 +51,14 @@ const People = class {
       }
     }`;
     return await svQuery({
-      query,
-      variables: { input },
-      url: this.#graphUrl,
-      headers,
-      clean: true, // nullToUndefined will run automatically
-      operationName,
-    });
+			query,
+			variables: { input },
+			url: this.#graphUrl,
+			key: training.people_mutation.people_insert,
+			headers,
+			clean: true, // nullToUndefined will run automatically
+			operationName,
+		});
   }
   async remove({
     fields,
@@ -75,13 +77,14 @@ const People = class {
       }
     }`;
     return await svQuery({
-      query,
-      variables: { filter },
-      url: this.#graphUrl,
-      headers,
-      clean: true, // nullToUndefined will run automatically
-      operationName,
-    });
+			query,
+			variables: { filter },
+			url: this.#graphUrl,
+			key: training.people_mutation.people_remove,
+			headers,
+			clean: true, // nullToUndefined will run automatically
+			operationName,
+		});
   }
 };
 

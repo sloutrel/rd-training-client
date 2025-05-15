@@ -28,6 +28,7 @@ const Movies = class {
       query,
       variables: { filter },
       url: this.#graphUrl,
+      key: training.movies_query.movies_find,
       headers,
       clean: true, // nullToUndefined will run automatically
       operationName,
@@ -50,13 +51,14 @@ const Movies = class {
       }
     }`;
     return await svQuery({
-      query,
-      variables: { input },
-      url: this.#graphUrl,
-      headers,
-      clean: true, // nullToUndefined will run automatically
-      operationName,
-    });
+			query,
+			variables: { input },
+			url: this.#graphUrl,
+			key: training.movies_mutation.movies_insert,
+			headers,
+			clean: true, // nullToUndefined will run automatically
+			operationName,
+		});
   }
   async remove({
     fields,
@@ -75,13 +77,14 @@ const Movies = class {
       }
     }`;
     return await svQuery({
-      query,
-      variables: { filter },
-      url: this.#graphUrl,
-      headers,
-      clean: true, // nullToUndefined will run automatically
-      operationName,
-    });
+			query,
+			variables: { filter },
+			url: this.#graphUrl,
+			key: training.movies_mutation.movies_remove,
+			headers,
+			clean: true, // nullToUndefined will run automatically
+			operationName,
+		});
   }
 };
 
