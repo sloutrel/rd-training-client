@@ -28,7 +28,7 @@ const Movies = class {
       query,
       variables: { filter },
       url: this.#graphUrl,
-      key: training.movies_query.movies_find,
+      key: 'training.movies_query.movies_find',
       headers,
       clean: true, // nullToUndefined will run automatically
       operationName,
@@ -54,7 +54,7 @@ const Movies = class {
 			query,
 			variables: { input },
 			url: this.#graphUrl,
-			key: training.movies_mutation.movies_insert,
+			key: 'training.movies_mutation.movies_insert',
 			headers,
 			clean: true, // nullToUndefined will run automatically
 			operationName,
@@ -80,7 +80,7 @@ const Movies = class {
 			query,
 			variables: { filter },
 			url: this.#graphUrl,
-			key: training.movies_mutation.movies_remove,
+			key: 'training.movies_mutation.movies_remove',
 			headers,
 			clean: true, // nullToUndefined will run automatically
 			operationName,

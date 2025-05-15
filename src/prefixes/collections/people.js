@@ -28,7 +28,7 @@ const People = class {
 			query,
 			variables: { filter },
 			url: this.#graphUrl,
-			key: training.people_query.people_find,
+			key: 'training.people_query.people_find',
 			headers,
 			clean: true, // nullToUndefined will run automatically
 			operationName,
@@ -54,7 +54,7 @@ const People = class {
 			query,
 			variables: { input },
 			url: this.#graphUrl,
-			key: training.people_mutation.people_insert,
+			key: 'training.people_mutation.people_insert',
 			headers,
 			clean: true, // nullToUndefined will run automatically
 			operationName,
@@ -80,7 +80,7 @@ const People = class {
 			query,
 			variables: { filter },
 			url: this.#graphUrl,
-			key: training.people_mutation.people_remove,
+			key: 'training.people_mutation.people_remove',
 			headers,
 			clean: true, // nullToUndefined will run automatically
 			operationName,
