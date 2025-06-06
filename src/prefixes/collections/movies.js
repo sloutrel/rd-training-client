@@ -16,25 +16,23 @@ const Movies = class {
     operationName = "FindMovie",
   }) {
     context = context || this.#graphServer.context;
-    const query = `query ${operationName}($filter: movies_find_input) {
+    const query = `query ${operationName}($filter: training_movies_find_input) {
       training {
-        movies_query {
-          movies_find(filters: $filter) {
-            ${fields}
-          }
+        movies_find(filters: $filter) {
+          ${fields}
         }
       }
     }`;
     return await svQuery({
-      query,
-      variables: { filter },
-      url: this.#graphUrl,
-      key: 'training.movies_query.movies_find',
-      headers,
-      clean: true, // nullToUndefined will run automatically
-      operationName,
-      token: context.token
-    });
+			query,
+			variables: { filter },
+			url: this.#graphUrl,
+			key: "training.movies_find",
+			headers,
+			clean: true, // nullToUndefined will run automatically
+			operationName,
+			token: context.token,
+		});
   }
   async insert({
     fields,
@@ -44,12 +42,10 @@ const Movies = class {
     operationName = "InsertMovie",
   }) {
     context = context || this.#graphServer.context;
-    const query = `mutation ${operationName}($input: [movies_insert_input!]!) {
+    const query = `mutation ${operationName}($input: [training_movies_insert_input!]!) {
       training {
-        movies_mutation {
-          movies_insert(movies: $input) {
-            ${fields}
-          }
+        movies_insert(movies: $input) {
+          ${fields}
         }
       }
     }`;
@@ -57,11 +53,11 @@ const Movies = class {
 			query,
 			variables: { input },
 			url: this.#graphUrl,
-			key: 'training.movies_mutation.movies_insert',
+			key: "training.movies_insert",
 			headers,
 			clean: true, // nullToUndefined will run automatically
 			operationName,
-      token: context.token
+			token: context.token,
 		});
   }
   async remove({
@@ -72,12 +68,10 @@ const Movies = class {
     operationName = "RemoveMovie",
   }) {
     context = context || this.#graphServer.context;
-    const query = `mutation ${operationName}($filter: movies_remove_input) {
+    const query = `mutation ${operationName}($filter: training_movies_remove_input) {
       training {
-        movies_mutation {
-          movies_remove(movieIds: $filter) {
-            ${fields}
-          }
+        movies_remove(movieIds: $filter) {
+          ${fields}
         }
       }
     }`;
@@ -85,11 +79,11 @@ const Movies = class {
 			query,
 			variables: { filter },
 			url: this.#graphUrl,
-			key: 'training.movies_mutation.movies_remove',
+			key: "training.movies_remove",
 			headers,
 			clean: true, // nullToUndefined will run automatically
 			operationName,
-      token: context.token
+			token: context.token,
 		});
   }
 };

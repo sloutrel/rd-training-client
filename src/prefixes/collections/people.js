@@ -16,12 +16,10 @@ const People = class {
     operationName = "FindPeople",
   }) {
     context = context || this.#graphServer.context;
-    const query = `query ${operationName}($filter: people_find_input) {
+    const query = `query ${operationName}($filter: training_people_find_input) {
       training {
-        people_query {
-          people_find(filters: $filter) {
-            ${fields}
-          }
+        people_find(filters: $filter) {
+          ${fields}
         }
       }
     }`;
@@ -29,7 +27,7 @@ const People = class {
 			query,
 			variables: { filter },
 			url: this.#graphUrl,
-			key: 'training.people_query.people_find',
+			key: 'training.people_find',
 			headers,
 			clean: true, // nullToUndefined will run automatically
 			operationName,
@@ -44,12 +42,10 @@ const People = class {
     operationName = "InsertPeople",
   }) {
     context = context || this.#graphServer.context;
-    const query = `mutation ${operationName}($input: [people_insert_input!]!) {
+    const query = `mutation ${operationName}($input: [training_people_insert_input!]!) {
       training {
-        people_mutation {
-          people_insert(people: $input) {
-            ${fields}
-          }
+        people_insert(people: $input) {
+          ${fields}
         }
       }
     }`;
@@ -57,7 +53,7 @@ const People = class {
 			query,
 			variables: { input },
 			url: this.#graphUrl,
-			key: "training.people_mutation.people_insert",
+			key: "training.people_insert",
 			headers,
 			clean: true, // nullToUndefined will run automatically
 			operationName,
@@ -72,12 +68,10 @@ const People = class {
     operationName = "RemovePeople",
   }) {
     context = context || this.#graphServer.context;
-    const query = `mutation ${operationName}($filter: people_remove_input) {
+    const query = `mutation ${operationName}($filter: training_people_remove_input) {
       training {
-        people_mutation {
-          people_remove(peopleIds: $filter) {
-            ${fields}
-          }
+        people_remove(peopleIds: $filter) {
+          ${fields}
         }
       }
     }`;
@@ -85,7 +79,7 @@ const People = class {
 			query,
 			variables: { filter },
 			url: this.#graphUrl,
-			key: "training.people_mutation.people_remove",
+			key: "training.people_remove",
 			headers,
 			clean: true, // nullToUndefined will run automatically
 			operationName,
